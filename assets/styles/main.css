@@ -14,12 +14,30 @@
     position: relative;
     z-index: 0;
 }
+.item__heart-full {
+    opacity: 0;
+    transition: opacity 200ms;
+}
 
-.offers__item:hover .item__heart-full {
+.item__img-description {
+    width: 100%;
+    padding: 5px 0;
+    text-align: center;
+    position: absolute;
+    top: 309px;
+    left: 0;
+    background: #ffffffa1;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 200ms, top 200ms;
+}
+
+
+.item__heart-hovered {
     opacity: 1;
 }
 
-.offers__item:hover .item__img-description {
+.item__description-hovered {
     opacity: 1;
     top: 297px;
 }
@@ -57,25 +75,6 @@
     border-radius: 50%;
     z-index: 1;
 }
-
-.item__heart-full {
-    opacity: 0;
-    transition: opacity 200ms;
-}
-
-.item__img-description {
-    width: 100%;
-    padding: 5px 0;
-    text-align: center;
-    position: absolute;
-    top: 309px;
-    left: 0;
-    background: #ffffffa1;
-    z-index: 0;
-    opacity: 0;
-    transition: opacity 200ms, top 200ms;
-}
-
 /* 
     Media query 
 */

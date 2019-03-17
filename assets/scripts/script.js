@@ -122,3 +122,16 @@ items.innerHTML = itemsArray.map(item =>`
 <span class="item__price">${item.price}</span>
 </div>
 `);
+
+for (let item of document.getElementsByClassName("offers__item")){
+    item.addEventListener("mouseover", function(){
+        this.getElementsByClassName("item__heart-full")[0].classList.add("item__heart-hovered")
+        this.getElementsByClassName("item__img-description")[0].classList.add("item__description-hovered")
+    });
+}
+for (let item of document.getElementsByClassName("offers__item")){
+    item.addEventListener("mouseleave", function(){
+        this.getElementsByClassName("item__heart-full")[0].classList.remove("item__heart-hovered")
+        this.getElementsByClassName("item__img-description")[0].classList.remove("item__description-hovered")
+    });
+}
