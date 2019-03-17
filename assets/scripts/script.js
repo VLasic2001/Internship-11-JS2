@@ -28,36 +28,6 @@ let productTypeArray = [
     {type: "Yellow", count: "1014"},
 ];
 
-let sleeveLengthArray = [
-    {type: "Black", count: "1014"},
-    {type: "White", count: "1014"},
-    {type: "Navy", count: "1014"},
-    {type: "Gray", count: "1014"},
-    {type: "Green", count: "1014"},
-    {type: "Red", count: "1014"},
-    {type: "Multi", count: "1014"},
-    {type: "Blue", count: "1014"},
-    {type: "Pink", count: "1014"},
-    {type: "Beige", count: "1014"},
-    {type: "Purple", count: "1014"},
-    {type: "Yellow", count: "1014"},
-];
-
-let necklineArray = [
-    {type: "Black", count: "1014"},
-    {type: "White", count: "1014"},
-    {type: "Navy", count: "1014"},
-    {type: "Gray", count: "1014"},
-    {type: "Green", count: "1014"},
-    {type: "Red", count: "1014"},
-    {type: "Multi", count: "1014"},
-    {type: "Blue", count: "1014"},
-    {type: "Pink", count: "1014"},
-    {type: "Beige", count: "1014"},
-    {type: "Purple", count: "1014"},
-    {type: "Yellow", count: "1014"},
-];
-
 let sortList = document.getElementById("sort");
 let productTypeList = document.getElementById("productType");
 let sleeveLengthList = document.getElementById("sleeveLength");
@@ -65,8 +35,8 @@ let necklineList = document.getElementById("neckline");
 
 sortList.innerHTML = sortArray.map(item => `<li class="dropdown__list__item">${item.type} <span class="list__item__count"> (${item.count})</span></li>`).join('');
 productTypeList.innerHTML = productTypeArray.map(item => `<li class="dropdown__list__item">${item.type} <span class="list__item__count"> (${item.count})</span></li>`).join('');
-sleeveLengthList.innerHTML = sleeveLengthArray.map(item => `<li class="dropdown__list__item">${item.type} <span class="list__item__count"> (${item.count})</span></li>`).join('');
-necklineList.innerHTML = necklineArray.map(item => `<li class="dropdown__list__item">${item.type} <span class="list__item__count"> (${item.count})</span></li>`).join('');
+sleeveLengthList.innerHTML = sortArray.map(item => `<li class="dropdown__list__item">${item.type} <span class="list__item__count"> (${item.count})</span></li>`).join('');
+necklineList.innerHTML = sortArray.map(item => `<li class="dropdown__list__item">${item.type} <span class="list__item__count"> (${item.count})</span></li>`).join('');
 
 let itemsArray = [
     {src: "assets/images/offer.jpg",
@@ -117,21 +87,53 @@ items.innerHTML = itemsArray.map(item =>`
 <img class="item__img" src="${item.src}" alt="Offer" />
 <img class="item__heart-shape" src="./assets/images/heart-shape.png" alt="Hearth Shape">
 <img class="item__heart-full" src="./assets/images/heart-full.png" alt="Hearth Full">
+<img class="item__heart-clickable" onclick="colorHeart(this)" src="./assets/images/heart-full.png" alt="Hearth Full">
 <p class="item__img-description">${item.description}</p>
 <p class="item__paragraph">${item.paragraph}</p>
 <span class="item__price">${item.price}</span>
 </div>
-`);
+`).join('');
 
 for (let item of document.getElementsByClassName("offers__item")){
     item.addEventListener("mouseover", function(){
-        this.getElementsByClassName("item__heart-full")[0].classList.add("item__heart-hovered")
-        this.getElementsByClassName("item__img-description")[0].classList.add("item__description-hovered")
+        this.querySelector(".item__heart-full").classList.add("item__heart-hovered")
+        this.querySelector(".item__img-description").classList.add("item__description-hovered")
     });
 }
 for (let item of document.getElementsByClassName("offers__item")){
     item.addEventListener("mouseleave", function(){
-        this.getElementsByClassName("item__heart-full")[0].classList.remove("item__heart-hovered")
-        this.getElementsByClassName("item__img-description")[0].classList.remove("item__description-hovered")
+        this.querySelector(".item__heart-full").classList.remove("item__heart-hovered")
+        this.querySelector(".item__img-description").classList.remove("item__description-hovered")
     });
+}
+
+var favourites = 0;
+
+function heartSetup(){
+    for(let heart of document.getElementsByClassName("item__heart-clickable")){
+        heart.style.opacity = "0";
+    }
+}
+heartSetup();
+
+function colorHeart(element){
+    if(element.style.opacity=="0"){
+        element.style.opacity="1";
+        favourites += 1;
+    }
+    else{
+        element.style.opacity="0";
+        favourites -= 1;
+    }
+    updateFavourites();
+}
+
+function updateFavourites(){
+    let element = document.querySelector("#favourites");
+    if(favourites > 0){
+        element.style.opacity = "1";
+        element.textContent = `Favourites: ${favourites}`;
+    }
+    else
+    element.style.opacity = "0";
 }
