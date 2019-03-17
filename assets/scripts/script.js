@@ -32,11 +32,24 @@ let sortList = document.getElementById("sort");
 let productTypeList = document.getElementById("productType");
 let sleeveLengthList = document.getElementById("sleeveLength");
 let necklineList = document.getElementById("neckline");
+let designList = document.getElementById("design");
+let rangeList = document.getElementById("range");
+let brandList = document.getElementById("brand");
+let sizeList = document.getElementById("size");
+let colourList = document.getElementById("colour");
+let fitList = document.getElementById("fit");
+let priceRangeList = document.getElementById("priceRange");
 
 sortList.innerHTML = sortArray.map(item => `<li class="dropdown__list__item">${item.type} <span class="list__item__count"> (${item.count})</span></li>`).join('');
 productTypeList.innerHTML = productTypeArray.map(item => `<li class="dropdown__list__item">${item.type} <span class="list__item__count"> (${item.count})</span></li>`).join('');
 sleeveLengthList.innerHTML = sortArray.map(item => `<li class="dropdown__list__item">${item.type} <span class="list__item__count"> (${item.count})</span></li>`).join('');
 necklineList.innerHTML = sortArray.map(item => `<li class="dropdown__list__item">${item.type} <span class="list__item__count"> (${item.count})</span></li>`).join('');
+designList.innerHTML = sortArray.map(item => `<li class="dropdown__list__item">${item.type} <span class="list__item__count"> (${item.count})</span></li>`).join('');
+brandList.innerHTML = productTypeArray.map(item => `<li class="dropdown__list__item">${item.type} <span class="list__item__count"> (${item.count})</span></li>`).join('');
+sizeList.innerHTML = sortArray.map(item => `<li class="dropdown__list__item">${item.type} <span class="list__item__count"> (${item.count})</span></li>`).join('');
+colourList.innerHTML = sortArray.map(item => `<li class="dropdown__list__item">${item.type} <span class="list__item__count"> (${item.count})</span></li>`).join('');
+fitList.innerHTML = sortArray.map(item => `<li class="dropdown__list__item">${item.type} <span class="list__item__count"> (${item.count})</span></li>`).join('');
+priceRangeList.innerHTML = sortArray.map(item => `<li class="dropdown__list__item">${item.type} <span class="list__item__count"> (${item.count})</span></li>`).join('');
 
 let itemsArray = [
     {src: "assets/images/offer.jpg",
@@ -87,7 +100,7 @@ items.innerHTML = itemsArray.map(item =>`
 <img class="item__img" src="${item.src}" alt="Offer" />
 <img class="item__heart-shape" src="./assets/images/heart-shape.png" alt="Hearth Shape">
 <img class="item__heart-full" src="./assets/images/heart-full.png" alt="Hearth Full">
-<img class="item__heart-clickable" onclick="colorHeart(this)" src="./assets/images/heart-full.png" alt="Hearth Full">
+<img class="item__heart-clickable" onclick="colorHeart(event.target)" src="./assets/images/heart-full.png" alt="Hearth Full">
 <p class="item__img-description">${item.description}</p>
 <p class="item__paragraph">${item.paragraph}</p>
 <span class="item__price">${item.price}</span>
@@ -126,6 +139,7 @@ function colorHeart(element){
         favourites -= 1;
     }
     updateFavourites();
+    event.stopPropagation();
 }
 
 function updateFavourites(){
