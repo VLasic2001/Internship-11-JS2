@@ -83,7 +83,7 @@ let itemsArray = [
 let items = document.getElementById("items");
 
 items.innerHTML = itemsArray.map(item =>`
-<div class="offers__item">
+<div class="offers__item" onclick="openItem(this)">
 <img class="item__img" src="${item.src}" alt="Offer" />
 <img class="item__heart-shape" src="./assets/images/heart-shape.png" alt="Hearth Shape">
 <img class="item__heart-full" src="./assets/images/heart-full.png" alt="Hearth Full">
@@ -136,4 +136,16 @@ function updateFavourites(){
     }
     else
     element.style.opacity = "0";
+}
+
+function openItem(item){
+    var w = window.open();
+    w.document.open();
+    w.document.write(`
+        <h1>${item.children[5].innerHTML}</h1>
+        <h2>${item.children[6].innerHTML}</h2>
+        <img src="${item.children[0].src}"/>
+        <p>${item.children[4].innerHTML}</p>
+    `);
+    w.document.close();
 }
