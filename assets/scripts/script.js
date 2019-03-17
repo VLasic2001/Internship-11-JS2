@@ -1,3 +1,4 @@
+//First task
 let sortArray = [
     {type: "Black", count: "1014"},
     {type: "White", count: "1014"},
@@ -51,6 +52,7 @@ colourList.innerHTML = sortArray.map(item => `<li class="dropdown__list__item">$
 fitList.innerHTML = sortArray.map(item => `<li class="dropdown__list__item">${item.type} <span class="list__item__count"> (${item.count})</span></li>`).join('');
 priceRangeList.innerHTML = sortArray.map(item => `<li class="dropdown__list__item">${item.type} <span class="list__item__count"> (${item.count})</span></li>`).join('');
 
+//Second task
 let itemsArray = [
     {src: "assets/images/offer.jpg",
     description: "TALL",
@@ -107,6 +109,7 @@ items.innerHTML = itemsArray.map(item =>`
 </div>
 `).join('');
 
+//Third task
 for (let item of document.getElementsByClassName("offers__item")){
     item.addEventListener("mouseover", function(){
         this.querySelector(".item__heart-full").classList.add("item__heart-hovered")
@@ -120,6 +123,7 @@ for (let item of document.getElementsByClassName("offers__item")){
     });
 }
 
+//Fourth task
 var favourites = 0;
 
 function heartSetup(){
@@ -152,6 +156,7 @@ function updateFavourites(){
     element.style.opacity = "0";
 }
 
+//Fifth task
 function openItem(item){
     var w = window.open();
     w.document.open();
